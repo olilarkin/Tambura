@@ -16,7 +16,7 @@ Compile the FAUST .dsp file to your favorite platform/architecture, or [try it o
 
 http://olilarkin.co.uk/tambura/
 
-![BlockDiagram](BlockDiagram.svg)
+![BlockDiagram](BlockDiagram.png)
 
 **Audio Examples**
 
