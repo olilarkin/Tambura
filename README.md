@@ -8,7 +8,7 @@ Although it was originally developed as a Max4Live device using faustgen~, this 
 
 This has been an ongoing hobby project since 2013.
 
-![Instrument](Instrument.png =100x)
+![Instrument](Instrument.png)
 
 **Getting started:**
 
@@ -16,7 +16,7 @@ Compile the FAUST .dsp file to your favorite platform/architecture, or [try it o
 
 http://olilarkin.co.uk/tambura/
 
-![BlockDiagram](BlockDiagram.svg =700x)
+![BlockDiagram](BlockDiagram.svg)
 
 **Audio Examples**
 
