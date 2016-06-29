@@ -38,7 +38,7 @@ coupling = hslider("/h:main/sympathetic coupling level [style:knob]", 0.1, 0., 1
 jw = hslider("/h:main/jawari [style:knob]", 0, 0,  0.1, 0.0001) : sm : sm; // creates the buzzing / jawari effect 
 spread = hslider("/h:main/string spread [style:knob]", 1., 0., 1., 0.01) : sm; // stereo spread of strings
 
-pattack = hslider("/h:pick/attack [style:knob]", 0., 0, 0.5, 0.1); // attack time of pluck envelope, 0 to 0.5 times f0 wavelength
+pattack = hslider("/h:pick/attack [style:knob]", 0., 0, 0.5, 0.01); // attack time of pluck envelope, 0 to 0.5 times f0 wavelength
 ptime = hslider("/h:pick/time [style:knob]", 1., 0.01, 20., 0.01) : sm; // pick time (1 to 10 times f0 wavelength)
 ppos = hslider("/h:pick/position [style:knob]", 0.25, 0.01, 0.5, 0.01) : sm; // pick position (ratio of f0 wavelength)
 ptype = hslider("/h:pick/material [style:knob]", 0.13, 0.0, 1., 0.01) : sm; // cross fades between pink noise and DC excitation
