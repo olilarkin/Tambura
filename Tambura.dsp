@@ -1,5 +1,5 @@
 declare name "Tambura";
-declare description "Psuedo physical model of an Indian Tambura/Tanpura";
+declare description "Pseudo physical model of an Indian Tambura/Tanpura";
 declare author "Oli Larkin (contact@olilarkin.co.uk)";
 declare copyright "Oliver Larkin";
 declare version "1.0";
