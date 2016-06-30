@@ -2,7 +2,7 @@
 
 This is a FAUST patch inspired by the Indian [Tambura/Tanpura](https://en.wikipedia.org/wiki/Tanpura) - a four string drone instrument, known for its unique rich harmonic timbre.
 
-The model uses a few tricks to produce a Tambura-like sound, and should probably be referred to as a "pseudo" physical model, because it does not attempt to accurately recreate the physics of the string-bridge interaction. It includes a range of parameters selected to allow control of the qualities of the excitation/pluck, string behaviour and sympathetic resonance. It can produce some beautiful evolving drones, which can vary from very synthetic to quite natural.
+The model uses a few tricks to produce a Tambura-like sound, and should probably be referred to as a "pseudo" physical model, because it does not attempt to accurately recreate the physics of the string-bridge interaction. It includes a range of parameters selected to allow control of the qualities of the excitation/pluck, string behavior and sympathetic resonance. It can produce some beautiful evolving drones, which can vary from very synthetic to quite natural.
 
 Although it was originally developed as a Max4Live device using faustgen~, this version is entirely written in FAUST. Some aspects of the model still sound a little better in the Max4Live version and the FAUST version is missing convolution of the Body IR which is fundamental to the realism of the model. 
 
