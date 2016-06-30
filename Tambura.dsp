@@ -27,25 +27,25 @@ NStrings = 4;
 sm = smooth(tau2pole(0.05)); //50 ms smoothing
 
 pluck(i) = button("/h:trigger/pluck%1i"); // buttons for manual plucking
-pluckrate = hslider("/h:trigger/pluck rate [style:knob]", 0.1, 0.0, 0.5, 0.001); // automatic plucking rate (Hz)
-enableautoplucker = checkbox("/h:trigger/enable autopluck"); // enable automatic plucking
+pluckrate = hslider("/h:trigger/auto pluck rate [style:knob]", 0.1, 0.0, 0.5, 0.001); // automatic plucking rate (Hz)
+enableautoplucker = checkbox("/h:trigger/enable auto pluck"); // enable automatic plucking
 
-f0 = hslider("/h:main/sa (root of raga) [style:knob]", 36, 24, 72, 0.1) : sm : midikey2hz; // the base pitch of the drone
-t60 = hslider("/h:main/decay time [style:knob]", 10, 0, 120, 0.01) : sm; // how long the strings decay
-damp = 1. - hslider("/h:main/high freq loss [style:knob]", 0, 0, 1, 0.01) : sm; // string brightness
-fd = hslider("/h:main/harmonic motion [style:knob]", 0.001, 0., 0.2, 0.0001) : sm; // controls the detuning of parallel waveguides that mimics harmonic motion of the tambura
-coupling = hslider("/h:main/sympathetic coupling level [style:knob]", 0.1, 0., 1., 0.0001) : sm; // level of sympathetic coupling between strings
-jw = hslider("/h:main/jawari [style:knob]", 0, 0,  0.1, 0.0001) : sm : sm; // creates the buzzing / jawari effect 
-spread = hslider("/h:main/string spread [style:knob]", 1., 0., 1., 0.01) : sm; // stereo spread of strings
+f0 = hslider("/h:main/[1]sa (root of raga) [style:knob]", 36, 24, 72, 1) : sm : midikey2hz; // the base pitch of the drone
+t60 = hslider("/h:main/[2]decay time [style:knob][unit:s]", 10, 0, 100, 0.1) : sm; // how long the strings decay
+damp = 1. - hslider("/h:main/[3]high freq loss [style:knob]", 0, 0, 1., 0.01) : sm; // string brightness
+fd = hslider("/h:main/[4]harmonic motion [style:knob][scale:exp]", 0.001, 0., 1, 0.0001) : *(0.2) : sm; // controls the detuning of parallel waveguides that mimics harmonic motion of the tambura
+coupling = hslider("/h:main/[5]sympathetic coupling [style:knob]", 0.1, 0., 1., 0.0001) : sm; // level of sympathetic coupling between strings
+jw = hslider("/h:main/[6]jawari [style:knob]", 0, 0, 1, 0.001) : *(0.1) : sm; // creates the buzzing / jawari effect 
+spread = hslider("/h:main/[7]string spread [style:knob]", 1., 0., 1., 0.01) : sm; // stereo spread of strings
 
-pattack = hslider("/h:pick/attack [style:knob]", 0., 0, 0.5, 0.01); // attack time of pluck envelope, 0 to 0.5 times f0 wavelength
-ptime = hslider("/h:pick/time [style:knob]", 1., 0.01, 20., 0.01) : sm; // pick time (1 to 10 times f0 wavelength)
-ppos = hslider("/h:pick/position [style:knob]", 0.25, 0.01, 0.5, 0.01) : sm; // pick position (ratio of f0 wavelength)
-ptype = hslider("/h:pick/material [style:knob]", 0.13, 0.0, 1., 0.01) : sm; // cross fades between pink noise and DC excitation
-pbend = hslider("/h:pick/bend [style:knob]", 0, 0.0, 12., 0.01); // pick bend depth in semitones
-pbendtime = hslider("/h:pick/bend time [style:knob]", 1., 1, 200., 0.01); // pick bend time (1 to 200 ms)
+ptype = hslider("/h:pick/[1]material [style:knob]", 0.13, 0.0, 1., 0.01) : sm; // cross fades between pink noise and DC excitation
+pattack = hslider("/h:pick/[2]attack time [style:knob][scale:exp]", 0.07, 0, 0.5, 0.01); // attack time of pluck envelope, 0 to 0.5 times f0 wavelength
+ptime = hslider("/h:pick/[3]decay time [style:knob]", 1., 0.01, 20., 0.01); // decay time (1 to 10 times f0 wavelength)
+ppos = hslider("/h:pick/[4]position [style:knob]", 0.25, 0.01, 0.5, 0.01); // pick position (ratio of f0 wavelength)
+pbend = hslider("/h:pick/[5]bend depth [style:knob][unit:st]", 3, 0., 12., 0.01); // pick bend depth in semitones
+pbendtime = hslider("/h:pick/[6]bend time [style:knob][unit:ms]", 1., 1, 200., 1); // pick bend time (1 to 200 ms)
 
-vol = hslider("volume", 0, -70, +4, 0.1) : db2linear : sm; // master volume
+vol = hslider("volume [unit:dB]", 0, -36, +4, 0.1) : db2linear : sm; // master volume
 
 // s = string index
 // c = comb filter index (of 9 comb filters in risset string)
