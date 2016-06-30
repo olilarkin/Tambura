@@ -43,7 +43,7 @@ pattack = hslider("/h:pick/[2]attack time [style:knob][scale:exp]", 0.07, 0, 0.5
 ptime = hslider("/h:pick/[3]decay time [style:knob]", 1., 0.01, 20., 0.01); // decay time (1 to 10 times f0 wavelength)
 ppos = hslider("/h:pick/[4]position [style:knob]", 0.25, 0.01, 0.5, 0.01); // pick position (ratio of f0 wavelength)
 pbend = hslider("/h:pick/[5]bend depth [style:knob][unit:st]", 3, 0., 12., 0.01); // pick bend depth in semitones
-pbendtime = hslider("/h:pick/[6]bend time [style:knob][unit:ms]", 1., 1, 200., 1); // pick bend time (1 to 200 ms)
+pbendtime = hslider("/h:pick/[6]bend time [style:knob][unit:ms]", 10., 1, 200., 1); // pick bend time (1 to 200 ms)
 
 vol = hslider("volume [unit:dB]", 0, -36, +4, 0.1) : db2linear : sm; // master volume
 
