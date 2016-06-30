@@ -66,7 +66,8 @@ tambura(NStrings) = ( couplingmatrix(NStrings), par(s, NStrings, excitation(s)) 
             U(s,s)=!;
             U(s,j)=_;
           };
-          couplingfilter = highshelf(1,-100,5000) : peak_eq(14, 2500, 400) : peak_eq(20, 7500, 650); // EQ to simulate bridge response
+          couplingfilter = component("bridgeIR.dsp");
+          //couplingfilter = highshelf(1,-100,5000) : peak_eq(14, 2500, 400) : peak_eq(20, 7500, 650); // EQ to simulate bridge response
     };
 
     //pan(s) = _ <: *(1-v), *(v)
