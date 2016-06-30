@@ -17,6 +17,7 @@ import("oscillator.lib");
 
 dtmax = 4096;
 
+//tunings of the four strings, ratios of f0
 ratios(0) = 1.5;
 ratios(1) = 2.;
 ratios(2) = 2.01;
@@ -38,7 +39,7 @@ coupling = hslider("/h:main/[5]sympathetic coupling [style:knob]", 0.1, 0., 1., 
 jw = hslider("/h:main/[6]jawari [style:knob]", 0, 0, 1, 0.001) : *(0.1) : sm; // creates the buzzing / jawari effect 
 spread = hslider("/h:main/[7]string spread [style:knob]", 1., 0., 1., 0.01) : sm; // stereo spread of strings
 
-ptype = hslider("/h:pick/[1]material [style:knob]", 0.13, 0.0, 1., 0.01) : sm; // cross fades between pink noise and DC excitation
+ptype = hslider("/h:pick/[1]material [style:knob]", 0.13, 0.0, 1., 0.01) : sm; // crossfades between pink noise and DC excitation
 pattack = hslider("/h:pick/[2]attack time [style:knob][scale:exp]", 0.07, 0, 0.5, 0.01); // attack time of pluck envelope, 0 to 0.5 times f0 wavelength
 ptime = hslider("/h:pick/[3]decay time [style:knob]", 1., 0.01, 20., 0.01); // decay time (1 to 10 times f0 wavelength)
 ppos = hslider("/h:pick/[4]position [style:knob]", 0.25, 0.01, 0.5, 0.01); // pick position (ratio of f0 wavelength)
@@ -91,7 +92,7 @@ tambura(NStrings) = ( couplingmatrix(NStrings), par(s, NStrings, excitation(s)) 
     string(s, trig) = _, _ <: +, !,_ : rissetstring(_, s), rissetstring(_, s) // dual risset strings for decoupled feedback
     with {
       rissetstring(x, s) = _ <: par(c, 9, stringloop(x, s, c)) :> _ : dcblocker *(0.01); // 9 detuned waveguide resonators in parallel
-      stringloop(x, s, c) = (+ : delay) ~ ((dampingfilter : nlfm) * fbk) // all-pass interpolated waveguide with damping filter and non linear apf for jawari effect
+      stringloop(x, s, c) = (+ : delay) ~ ((dampingfilter : nlfm) * fbk) // waveguide string with damping filter and non linear apf for jawari effect
       with {
         //delay = fdelay1a(dtmax, dtsamples, x); // allpass interpolation has better HF response
         delay = fdelaylti(2, dtmax, dtsamples,x); // lagrange interpolation glitches less with pitch envelope
