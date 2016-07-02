@@ -50,8 +50,7 @@ vol = hslider("volume [unit:dB]", 0, -36, +4, 0.1) : db2linear : sm; // master v
 
 // s = string index
 // c = comb filter index (of 9 comb filters in risset string)
-tambura(NStrings) = ( couplingmatrix(NStrings), par(s, NStrings, excitation(s)) : interleave(NStrings, 2) : par(s, NStrings, string(s, pluck(s)))
-                    ) // string itself with excitation + fbk as input
+tambura(NStrings) = ( couplingmatrix(NStrings), par(s, NStrings, excitation(s)) : interleave(NStrings, 2) : par(s, NStrings, string(s, pluck(s))) ) // string itself with excitation + fbk as input
                     ~ par(s, NStrings, (!,_)) // feedback only the right waveguide
                     : par(s, NStrings, (+:pan(s)) // add left/right waveguides and pan
                     ) :> _,_ //stereo output
