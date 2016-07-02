@@ -28,7 +28,7 @@ NStrings = 4;
 sm = smooth(tau2pole(0.05)); //50 ms smoothing
 
 pluck(i) = button("/h:trigger/pluck%1i"); // buttons for manual plucking
-pluckrate = hslider("/h:trigger/auto pluck rate [style:knob]", 0.1, 0.0, 0.5, 0.001); // automatic plucking rate (Hz)
+pluckrate = hslider("/h:trigger/auto pluck rate [style:knob][unit:hz]", 0.1, 0.0, 0.5, 0.001); // automatic plucking rate (Hz)
 enableautoplucker = checkbox("/h:trigger/enable auto pluck"); // enable automatic plucking
 
 f0 = hslider("/h:main/[1]sa (root of raga) [style:knob]", 36, 24, 72, 1) : sm : midikey2hz; // the base pitch of the drone
