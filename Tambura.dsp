@@ -27,6 +27,7 @@ NStrings = 4;
 
 sm = smooth(tau2pole(0.05)); //50 ms smoothing
 
+//ratios(i) = hslider("/h:main/ratio%1i [style:knob]", 1., 0.1, 2., 0.001);
 pluck(i) = button("/h:trigger/pluck%1i"); // buttons for manual plucking
 pluckrate = hslider("/h:trigger/auto pluck rate [style:knob][unit:hz]", 0.1, 0.0, 0.5, 0.001); // automatic plucking rate (Hz)
 enableautoplucker = checkbox("/h:trigger/enable auto pluck"); // enable automatic plucking
