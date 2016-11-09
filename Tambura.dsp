@@ -10,7 +10,6 @@ declare licence "GPL";
 // - autoplucker fixed to 4 strings
 
 import("stdfaust.lib");
-//import("maxmsp.lib");
 
 line (value, time) = state~(_,_):!,_
 	with {
@@ -98,7 +97,7 @@ tambura(NStrings) = ( couplingmatrix(NStrings), par(s, NStrings, excitation(s)) 
     string(s, trig) = _, _ <: +, !,_ : rissetstring(_, s), rissetstring(_, s) // dual risset strings for decoupled feedback
     with {
       rissetstring(x, s) = _ <: par(c, 9, stringloop(x, s, c)) :> _ : fi.dcblocker *(0.01); // 9 detuned waveguide resonators in parallel
-      stringloop(x, s, c) = (+ : de.delay) ~ ((dampingfilter : nlfm) * fbk) // waveguide string with damping filter and non linear apf for jawari effect
+      stringloop(x, s, c) = (+ : delay) ~ ((dampingfilter : nlfm) * fbk) // waveguide string with damping filter and non linear apf for jawari effect
       with {
         //delay = de.fdelay1a(dtmax, dtsamples, x); // allpass interpolation has better HF response
         delay = de.fdelaylti(2, dtmax, dtsamples,x); // lagrange interpolation glitches less with pitch envelope
