@@ -37,20 +37,26 @@ pluck(i) = button("/h:trigger/pluck%1i"); // buttons for manual plucking
 pluckrate = hslider("/h:trigger/auto pluck rate [style:knob][unit:hz]", 0.1, 0.0, 0.5, 0.001); // automatic plucking rate (Hz)
 enableautoplucker = checkbox("/h:trigger/enable auto pluck"); // enable automatic plucking
 
-f0 = hslider("/h:main/[1]sa (root of raga) [style:knob]", 36, 24, 72, 1) : sm : ba.midikey2hz; // the base pitch of the drone
-t60 = hslider("/h:main/[2]decay time [style:knob][unit:s]", 10, 0, 100, 0.1) : sm; // how long the strings decay
-damp = 1. - hslider("/h:main/[3]high freq loss [style:knob]", 0, 0, 1., 0.01) : sm; // string brightness
-fd = hslider("/h:main/[4]harmonic motion [style:knob][scale:exp]", 0.001, 0., 1, 0.0001) : *(0.2) : sm; // controls the detuning of parallel waveguides that mimics harmonic motion of the tambura
-coupling = hslider("/h:main/[5]sympathetic coupling [style:knob]", 0.1, 0., 1., 0.0001) : sm; // level of sympathetic coupling between strings
+f0 = hslider("/h:main/[1]sa [style:knob]", 36, 24, 72, 1) : sm : ba.midikey2hz; // the base pitch of the drone
+t60 = hslider("/h:main/[2]decay_time [style:knob][unit:s]", 10, 0, 100, 0.1) : sm; // how long the strings decay
+damp = 1. - hslider("/h:main/[3]high_freq_loss [style:knob]", 0, 0, 1., 0.01) : sm; // string brightness
+fd = hslider("/h:main/[4]harmonic_motion [style:knob][scale:exp]", 0.001, 0., 1, 0.0001) : *(0.2) : sm; // controls the detuning of parallel waveguides that mimics harmonic motion of the tambura
+coupling = hslider("/h:main/[5]sympathetic_coupling [style:knob]", 0.1, 0., 1., 0.0001) : sm; // level of sympathetic coupling between strings
 jw = hslider("/h:main/[6]jawari [style:knob]", 0, 0, 1, 0.001) : *(0.1) : sm; // creates the buzzing / jawari effect 
-spread = hslider("/h:main/[7]string spread [style:knob]", 1., 0., 1., 0.01) : sm; // stereo spread of strings
+spread = hslider("/h:main/[7]string_spread [style:knob]", 1., 0., 1., 0.01) : sm; // stereo spread of strings
+
+tscale = hslider("/h:main/[8]tune_scale [style:knob]", 1, 0.9, 1.1, 0.001); //
+descale = hslider("/h:main/[9]decay_scale [style:knob]", 1, 0.1, 1., 0.001); //
+//dascale = hslider("/h:main/[10]damp_scale [style:knob]", 1, 0.5, 2, 0.01); //
 
 ptype = hslider("/h:pick/[1]material [style:knob]", 0.13, 0.0, 1., 0.01) : sm; // crossfades between pink noise and DC excitation
-pattack = hslider("/h:pick/[2]attack time [style:knob][scale:exp]", 0.07, 0, 0.5, 0.01); // attack time of pluck envelope, 0 to 0.5 times f0 wavelength
-ptime = hslider("/h:pick/[3]decay time [style:knob]", 1., 1, 20., 0.01); // decay time (1 to 10 times f0 wavelength)
+pattack = hslider("/h:pick/[2]attack_time [style:knob][scale:exp]", 0.07, 0, 0.5, 0.01); // attack time of pluck envelope, 0 to 0.5 times f0 wavelength
+ptime = hslider("/h:pick/[3]decay_time [style:knob]", 1., 1, 100., 0.01); // decay time (1 to 10 times f0 wavelength)
 ppos = hslider("/h:pick/[4]position [style:knob]", 0.25, 0.01, 0.5, 0.01); // pick position (ratio of f0 wavelength)
-pbend = hslider("/h:pick/[5]bend depth [style:knob][unit:st]", 3, 0., 12., 0.01); // pick bend depth in semitones
-pbendtime = hslider("/h:pick/[6]bend time [style:knob][unit:ms]", 10., 1, 200., 1); // pick bend time (1 to 200 ms)
+pbend = hslider("/h:pick/[5]bend_depth [style:knob][unit:st]", 3, 0., 12., 0.01); // pick bend depth in semitones
+pbendtime = hslider("/h:pick/[6]bend_time [style:knob][unit:ms]", 10., 1, 200., 1); // pick bend time (1 to 200 ms)
+
+
 
 vol = hslider("volume [unit:dB]", 0, -36, +4, 0.1) : ba.db2linear : sm; // master volume
 
