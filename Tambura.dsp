@@ -100,21 +100,22 @@ tambura(NStrings) = ( couplingmatrix(NStrings), par(s, NStrings, excitation(s)) 
         pickposfilter = fi.ffcombfilter(dtmax, ((ppos + posrand) * wl), -1); // simulation of different pluck positions
       };
 
-    string(s, trig) = _, _ <: +, !,_ : rissetstring(_, s), rissetstring(_, s) // dual risset strings for decoupled feedback
+    string(s, trig) = _, _ <: +, !,_ : rissetstring(_, s, 1., 1., 1.), rissetstring(_, s, tscale, descale, 1.) // dual risset strings for decoupled feedback
     with {
-      rissetstring(x, s) = _ <: par(c, 9, stringloop(x, s, c)) :> _ : fi.dcblocker *(0.01); // 9 detuned waveguide resonators in parallel
-      stringloop(x, s, c) = (+ : delay) ~ ((dampingfilter : nlfm) * fbk) // waveguide string with damping filter and non linear apf for jawari effect
+      rissetstring(x, s, ts, des, das) = _ <: par(c, 9, stringloop(x, s, c, ts, das)) :> _ : fi.dcblocker *(0.01); // 9 detuned delay line resonators in parallel
+      stringloop(x, s, c, ts, des, das) = (+ : delay) ~ ((dampingfilter : nlfm) * fbk) // waveguide string with damping filter and non linear apf for jawari effect
       with {
         //delay = de.fdelay1a(dtmax, dtsamples, x); // allpass interpolation has better HF response
-        delay = de.fdelaylti(2, dtmax, dtsamples,x); // lagrange interpolation glitches less with pitch envelope
+        delay = de.fdelaylti(2, dtmax, dtsamples, x); // lagrange interpolation glitches less with pitch envelope
         pitchenv = trig * line(1. - trig, pbendtime) <: * : *(pbend);
-        thisf0 = ba.pianokey2hz( ba.hz2pianokey((f0 * ratios(s)) + ((c-4) * fd) + pitchenv) );
+        thisf0 = ba.pianokey2hz( ba.hz2pianokey((f0 * ratios(s)) + ((c-4) * fd) + pitchenv) ) * ts;
         dtsamples = (ma.SR/thisf0) - 2;
-        fbk = pow(0.001,1.0/(thisf0*t60));
+        fbk = pow(0.001, 1.0/(thisf0*(t60 * descale)));
         dampingfilter(x) = (h0 * x' + h1*(x+x''))
         with {
-          h0 = (1. + damp)/2;
-          h1 = (1. - damp)/4;
+          d = das * damp;
+          h0 = (1. + d)/2;
+          h1 = (1. - d)/4;
         };
         nlfm(x) = x <: fi.allpassnn(1,(par(i,1,jw * ma.PI * x)));
       };
