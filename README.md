@@ -1,4 +1,4 @@
-#Tambura.dsp - Waveguide physical model of an Indian Tambura/Tanpura
+# Tambura.dsp - Waveguide physical model of an Indian Tambura/Tanpura
 
 This is a FAUST patch inspired by the Indian [Tambura/Tanpura](https://en.wikipedia.org/wiki/Tanpura) - a four string drone instrument, known for its unique rich harmonic timbre.
 
