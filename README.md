@@ -12,9 +12,9 @@ This has been an ongoing hobby project since 2013.
 
 **Getting started:**
 
-Compile the FAUST .dsp file to your favorite platform/architecture, or [try it on the web](http://olilarkin.co.uk/tambura/).
+Compile the FAUST .dsp file to your favorite platform/architecture, or [try it on the web](https://olilarkin.github.io/Tambura/).
 
-http://olilarkin.co.uk/tambura/
+https://olilarkin.github.io/Tambura/
 
 ![BlockDiagram](BlockDiagram.png)
 
